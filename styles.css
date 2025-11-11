@@ -527,51 +527,125 @@ body {
     opacity: 0.8;
 }
 
+/* ===== БУРГЕР-МЕНЮ ===== */
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1001;
+}
+
+.burger span {
+    width: 25px;
+    height: 3px;
+    background: #2563EB;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 /* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 2.5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.125rem;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .btn-primary,
     .btn-secondary {
         width: 100%;
         max-width: 300px;
         text-align: center;
     }
-    
+
     .section-header h2 {
         font-size: 2rem;
     }
-    
+
     .advantages-grid,
     .process-steps,
     .testimonials-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .cta-form {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .cta-form input,
     .cta-form button {
         width: 100%;
         max-width: 300px;
     }
-    
+
+    /* Показываем бургер на мобильных */
+    .burger {
+        display: flex;
+    }
+
+    /* Скрываем обычное меню */
     .nav-menu {
         display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #E2E8F0;
+        z-index: 999;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        transition: background 0.3s ease;
+    }
+
+    .nav-link:hover {
+        background: #F8FAFC;
+    }
+
+    .cta-button {
+        display: block;
+        text-align: center;
+        width: 100%;
     }
 }
 
@@ -579,23 +653,98 @@ body {
     .hero {
         padding: 100px 0 60px;
     }
-    
+
     .hero h1 {
         font-size: 2rem;
     }
-    
+
     .section-header h2 {
         font-size: 1.75rem;
     }
-    
+
     .advantage-card,
     .process-step,
     .testimonial-card {
         padding: 1.5rem;
     }
-    
+
     .calculator-container {
         padding: 1.5rem;
+    }
+}
+
+/* ===== АДАПТАЦИЯ КЕЙСОВ И СЕТОК ПОД МОБИЛЬНЫЕ ===== */
+@media (max-width: 768px) {
+    /* Кейсы - делаем одноколоночную верстку */
+    .case-study > .container > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Пакеты услуг - адаптируем под мобильные */
+    .packages-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Карточки пакетов - убираем scale эффект */
+    .package-card[style*="transform: scale"] {
+        transform: none !important;
+    }
+
+    /* Таблица сравнения - делаем скролл */
+    .comparison table {
+        min-width: 600px;
+    }
+
+    /* Контактная форма - одноколоночная */
+    .contact-form-section > .container > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Статистика на странице кейсов */
+    .stats > .container > div[style*="grid-template-columns"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+
+    /* Результаты - адаптируем сетку */
+    .results > .container > div[style*="grid-template-columns"],
+    .guarantees > .container > div[style*="grid-template-columns"],
+    .technologies > .container > div[style*="grid-template-columns"],
+    .solutions > .container > div[style*="grid-template-columns"],
+    .additional-services > .container > div[style*="grid-template-columns"],
+    .process-section > .container > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Изображения в кейсах - полная ширина */
+    .case-study img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Уменьшаем отступы секций */
+    section[style*="padding: 80px 0"],
+    section[style*="padding: 100px 0"] {
+        padding: 40px 0 !important;
+    }
+
+    /* Корректируем размеры шрифтов */
+    .case-study h2 {
+        font-size: 1.75rem !important;
+    }
+
+    .case-study h3 {
+        font-size: 1.25rem !important;
+    }
+
+    /* Корректируем карточки результатов */
+    .case-study > .container > div > div[style*="display: grid; grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
     }
 }
 
