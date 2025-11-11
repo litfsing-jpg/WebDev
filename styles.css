@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+/* Предотвращаем горизонтальный скролл */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -745,6 +751,88 @@ body {
     .case-study > .container > div > div[style*="display: grid; grid-template-columns: 1fr 1fr"] {
         grid-template-columns: 1fr !important;
         gap: 0.75rem !important;
+    }
+
+    /* Кнопки в hero секции */
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Большие заголовки с inline стилями */
+    h2[style*="font-size: 2.5rem"],
+    h2[style*="font-size: 3rem"] {
+        font-size: 1.75rem !important;
+    }
+
+    h3[style*="font-size: 1.5rem"] {
+        font-size: 1.25rem !important;
+    }
+
+    /* Большие числа в статистике */
+    div[style*="font-size: 3rem"] {
+        font-size: 2rem !important;
+    }
+
+    /* Паддинги в блоках */
+    div[style*="padding: 2rem"] {
+        padding: 1.5rem !important;
+    }
+
+    /* Кнопки Telegram - полная ширина на мобильных */
+    a[href*="t.me"] {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Убираем лишние отступы */
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+/* Дополнительные стили для очень маленьких экранов */
+@media (max-width: 480px) {
+    /* Уменьшаем gap в сетках */
+    .advantages-grid,
+    .process-grid,
+    .testimonials-grid {
+        gap: 1rem !important;
+    }
+
+    /* Hero заголовок убираем принудительный br */
+    .hero h1 br {
+        display: none;
+    }
+
+    /* Калькулятор */
+    .calculator-form {
+        gap: 1rem;
+    }
+
+    .calculator-form select {
+        font-size: 1rem;
+        padding: 0.875rem 1rem;
+    }
+
+    /* Таблицы - меньший padding */
+    table th,
+    table td {
+        padding: 0.75rem !important;
+        font-size: 0.875rem !important;
+    }
+
+    /* Маленькие кнопки в футере */
+    .footer {
+        font-size: 0.875rem;
+        padding: 1.5rem 0;
     }
 }
 
