@@ -157,25 +157,37 @@ function handleNavigation() {
 document.addEventListener('DOMContentLoaded', function() {
     // Анимации при скролле
     window.addEventListener('scroll', animateOnScroll);
-    
+
     // Начальная проверка для анимаций
     animateOnScroll();
-    
+
     // Обработка навигации
     handleNavigation();
-    
+
+    // Инициализация бургер-меню
+    const burger = document.getElementById('burger');
+    if (burger) {
+        burger.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Закрытие меню при клике на ссылку
+    const navLinks = document.querySelectorAll('.nav-link, .cta-button');
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+
     // Инициализация калькулятора
     const calculatorInputs = document.querySelectorAll('#project-type, #platform, #features');
     calculatorInputs.forEach(input => {
         input.addEventListener('change', calculatePrice);
     });
-    
+
     // Обработка всех форм
     const forms = document.querySelectorAll('form');
     forms.forEach(form => {
         form.addEventListener('submit', submitForm);
     });
-    
+
     // Маска для телефона
     const phoneInputs = document.querySelectorAll('input[type="tel"]');
     phoneInputs.forEach(input => {
@@ -201,10 +213,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ =====
 
-// Показ/скрытие мобильного меню
+// ===== БУРГЕР-МЕНЮ =====
 function toggleMobileMenu() {
-    const navMenu = document.querySelector('.nav-menu');
-    navMenu.classList.toggle('active');
+    const navMenu = document.getElementById('navMenu');
+    const burger = document.getElementById('burger');
+
+    if (navMenu && burger) {
+        navMenu.classList.toggle('active');
+        burger.classList.toggle('active');
+    }
+}
+
+// Закрытие меню при клике на ссылку
+function closeMobileMenu() {
+    const navMenu = document.getElementById('navMenu');
+    const burger = document.getElementById('burger');
+
+    if (navMenu && burger) {
+        navMenu.classList.remove('active');
+        burger.classList.remove('active');
+    }
 }
 
 // Кнопка "Наверх"
