@@ -657,11 +657,11 @@ body {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 100px 0 60px;
+        padding: 110px 0 40px !important;
     }
 
     .hero h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .section-header h2 {
@@ -681,6 +681,11 @@ body {
 
 /* ===== АДАПТАЦИЯ КЕЙСОВ И СЕТОК ПОД МОБИЛЬНЫЕ ===== */
 @media (max-width: 768px) {
+    /* Hero секции - правильный отступ сверху */
+    .hero {
+        padding-top: 120px !important;
+    }
+
     /* Кейсы - делаем одноколоночную верстку */
     .case-study > .container > div[style*="grid-template-columns: 1fr 1fr"] {
         grid-template-columns: 1fr !important;
